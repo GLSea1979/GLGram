@@ -87,7 +87,7 @@ describe('Gallery Routes', function() {
     it('should return a 400 error with no/invalid body', done => {
       debug('inside POST 400 error test');
       request.post(`{url}/api/gallery`)
-      .send()
+      // .send()
       .set({
         Authorization: `Bearer ${this.tempToken}`
       })
