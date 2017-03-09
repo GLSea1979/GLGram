@@ -12,7 +12,7 @@ const authRouter = require('./route/auth-router.js');
 const galleryRouter = require('./route/gallery-router.js');
 const picRouter = require('./route/pic-router.js');
 const errors = require('./lib/error-middleware.js');
-debug('step 1');
+
 dotenv.load();
 
 const PORT = process.env.PORT;
