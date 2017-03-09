@@ -88,6 +88,9 @@ describe('Gallery Routes', function() {
       debug('inside POST 400 error test');
       request.post(`{url}/api/gallery`)
       .send()
+      .set({
+        Authorization: `Bearer ${this.tempToken}`
+      })
       .end(err => {
         expect(err.status).to.equal(400);
         done();
