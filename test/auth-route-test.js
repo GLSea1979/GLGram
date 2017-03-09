@@ -1,5 +1,6 @@
 'use strict';
 
+const awsMocks = require('./lib/aws-mocks.js');
 const expect = require('chai').expect;
 const request = require('superagent');
 const mongoose = require('mongoose');
@@ -32,7 +33,7 @@ describe('Auth Routes', function() {
         .send(exampleUser)
         .end((err, res) => {
           if (err) return done(err);
-        
+
           expect(res.status).to.equal(200);
           expect(res.text).to.be.a('string');
           done();
