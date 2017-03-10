@@ -1,5 +1,6 @@
 'use strict';
 
+const awsMocks = require('./lib/aws-mocks.js');
 const expect = require('chai').expect;
 const request = require('superagent');
 const debug = require('debug')('glgram:pic-router-test');
