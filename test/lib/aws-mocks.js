@@ -18,7 +18,7 @@ AWS.mock('S3', 'upload', function(params, callback) {
   };
 
   if (!params.Bucket === 'glgram') {
-    return callback(new Error('Bucket must be cfgram'));
+    return callback(new Error('Bucket must be glgram'));
   };
 
   if (!params.Key) {
