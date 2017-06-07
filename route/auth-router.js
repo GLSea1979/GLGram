@@ -33,3 +33,25 @@ authRouter.get('/api/signin', basicAuth, function(req, res, next) {
   .then( token => res.send(token))
   .catch(next);
 });
+
+authRouter.put('/api/newUserName', basicAuth, function(req, res, next) {
+  debug('PUT /api/newUserName');
+
+  let password = req.auth.password;
+  delete req.auth.password;
+  User.findOne({ username: req.auth.username })
+  .then( user => user.comparePasswordHash(password))
+  .then( user => user.findByIdAndUpdate(user._id, req.body, {new: true} ))
+  .then( user => {
+    res.json(user);
+  })
+  .catch(next);
+});
+
+authRouter.delete('/api/remove/:id', basicAuth, function(req, res, next) {
+  debug('DELETE: /api/remove/:id');
+
+  User.findByIdAndRemove(req.params.id)
+  .then( () => res.sendStatus(204))
+  .catch(next);
+});
