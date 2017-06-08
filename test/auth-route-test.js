@@ -95,4 +95,27 @@ describe('Auth Routes', function() {
       });
     });
   });
+  describe('DELETE: /api/remove/:id', function() {
+    before( done => {
+      let user = new User(exampleUser);
+      user.generatePasswordHash(exampleUser.password)
+      .then( user => {
+        return user.save();
+      })
+      .then( user => {
+        this.tempUser = user;
+        done();
+      })
+      .catch(done);
+    });
+    it('should return a 204', done => {
+      request.delete(`${url}/api/remove/${this.tempUser._id}`)
+      .auth('test username', 'testpassword')
+      .end((err, res) => {
+        if(err) return done(err);
+        expect(res.status).to.equal(204);
+        done();
+      });
+    });
+  });
 });
